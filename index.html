@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Карта безопасности беспилотников</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+
+    .panel {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    button {
+      display: block;
+      margin-top: 5px;
+      width: 150px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="panel">
+  <b>Управление</b>
+  <button onclick="toggleRisk()">Показать риск</button>
+</div>
+
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // 1. Инициализация карты
+  const map = L.map('map').setView([39.6542, 66.9597], 13); // Самарканд
+
+  // 2. Базовый слой карты
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap'
+  }).addTo(map);
+
+  // 3. Пример точки риска
+  const riskPoint = L.circleMarker([39.6600, 66.9700], {
+    radius: 10,
+    color: 'red',
+    fillOpacity: 0.8
+  }).bindPopup("Высокий риск: перекрёсток");
+
+  // 4. Группа слоя риска
+  const riskLayer = L.layerGroup([riskPoint]);
+
+  let riskVisible = false;
+
+  // 5. Переключение слоя
+  function toggleRisk() {
+    if (riskVisible) {
+      map.removeLayer(riskLayer);
+    } else {
+      riskLayer.addTo(map);
+    }
+    riskVisible = !riskVisible;
+  }
+
+</script>
+
+</body>
+</html>
