@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Карта безопасности БПТС — Самарканд</title>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js" />
 
   <!-- Leaflet CSS -->
   <link
@@ -30,16 +30,21 @@
   <!-- Карта -->
   <div id="map"></div>
 
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Твои модули -->
- <script src="js/data.js"></script>
+<!-- Routing plugin (ВАЖНО!) -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet-routing-machine@latest/dist/leaflet-routing-machine.min.js"></script>
+
+<!-- Твои данные -->
+<script src="js/data.js"></script>
 <script src="js/risk-engine.js"></script>
 <script src="js/ui.js"></script>
 
+<!-- Карта -->
 <script src="js/map.js"></script>
 
+<!-- Маршрутизация -->
 <script src="js/routing.js"></script>
 </body>
 </html>
